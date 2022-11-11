@@ -61,6 +61,22 @@
 				<input name="nombre" value="<%= optPro.get().getNombre() %>"/>
 			</div> 
 		</div>
+		<div style="margin-top: 6px;" class="clearfix">
+			<div style="float: left;width: 50%">
+				<label>Precio</label>
+			</div>
+			<div style="float: none;width: auto;overflow: hidden;">
+				<input name="precio" value="<%= optPro.get().getPrecio() %>"/>
+			</div> 
+		</div>
+		<div style="margin-top: 6px;" class="clearfix">
+			<div style="float: left;width: 50%">
+				<label>Codigo Fabricante</label>
+			</div>
+			<div style="float: none;width: auto;overflow: hidden;">
+				<input name="codigo_fabricante" value="<%= optPro.get().getCodigoFabricante() %>"/>
+			</div> 
+		</div>
 		
 		<% 	} else { %>
 			

@@ -33,10 +33,12 @@ public class ProductoDAOImpl extends AbstractDAOImpl implements ProductoDAO {
         	//ps = conn.prepareStatement("INSERT INTO fabricante (nombre) VALUES (?)", new String[] {"codigo"});        	
         	//Ver también, AbstractDAOImpl.executeInsert ...
         	//Columna fabricante.codigo es clave primaria auto_increment, por ese motivo se omite de la sentencia SQL INSERT siguiente. 
-        	ps = conn.prepareStatement("INSERT INTO producto (nombre) VALUES (?)", Statement.RETURN_GENERATED_KEYS);
+        	ps = conn.prepareStatement("INSERT INTO producto (nombre, precio, codigo_fabricante) VALUES (?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
             
             int idx = 1;
-            ps.setString(idx++, producto.getNombre());
+            ps.setString(idx, producto.getNombre());
+            ps.setDouble(2, producto.getPrecio());
+            ps.setInt(3, producto.getCodigoFabricante());
                    
             int rows = ps.executeUpdate();
             if (rows == 0) 
@@ -78,8 +80,9 @@ public class ProductoDAOImpl extends AbstractDAOImpl implements ProductoDAO {
             while (rs.next()) {
             	Producto pro = new Producto();
             	int idx = 1;
-            	pro.setCodigo(rs.getInt(idx++));
-            	pro.setNombre(rs.getString(idx));
+            	pro.setCodigo(rs.getInt("codigo"));
+            	pro.setNombre(rs.getString("nombre"));
+            	pro.setPrecio(rs.getDouble("precio"));
             	listFab.add(pro);
             }
           
@@ -117,8 +120,11 @@ public class ProductoDAOImpl extends AbstractDAOImpl implements ProductoDAO {
         	if (rs.next()) {
         		Producto pro = new Producto();
         		idx = 1;
-        		pro.setCodigo(rs.getInt(idx++));
-        		pro.setNombre(rs.getString(idx));
+        		pro.setCodigo(rs.getInt("codigo"));
+        		pro.setNombre(rs.getString("nombre"));
+        		pro.setPrecio(rs.getDouble("precio"));
+        		pro.setCodigoFabricante(rs.getInt("codigo_fabricante"));
+        		
         		
         		return Optional.of(pro);
         	}
@@ -147,10 +153,11 @@ public class ProductoDAOImpl extends AbstractDAOImpl implements ProductoDAO {
         try {
         	conn = connectDB();
         	
-        	ps = conn.prepareStatement("UPDATE producto SET nombre = ?  WHERE codigo = ?");
+        	ps = conn.prepareStatement("UPDATE producto SET nombre = ?, precio = ?, codigo_fabricante = ?  WHERE codigo = ?");
         	int idx = 1;
-        	ps.setString(idx++, producto.getNombre());
-        	ps.setInt(idx, producto.getCodigo());
+        	ps.setString(idx, producto.getNombre());
+        	ps.setDouble(2, producto.getPrecio());
+        	ps.setInt(3, producto.getCodigoFabricante());
         	
         	int rows = ps.executeUpdate();
         	

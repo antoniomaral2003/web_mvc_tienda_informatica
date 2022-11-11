@@ -4,6 +4,21 @@ public class Fabricante {
 
 	private int codigo;
 	private String nombre;
+	
+	// Constructor de la clase
+	public Fabricante(int codigo, String nombre) {
+		
+		this.codigo = codigo;
+		this.nombre = nombre;
+		
+	}
+	
+	// Segundo constructor
+	public Fabricante() {
+		
+		
+		
+	}
 
 	public String getNombre() {
 		return nombre;

@@ -126,8 +126,12 @@ public class ProductosServlet extends HttpServlet {
 			ProductoDAO proDAO = new ProductoDAOImpl();
 			
 			String nombre = request.getParameter("nombre");
+			String precio = request.getParameter("precio");
+			String codigoFabricante = request.getParameter("codigo_fabricante");
 			Producto nuevoPro = new Producto();
 			nuevoPro.setNombre(nombre);
+			nuevoPro.setPrecio(Double.parseDouble(precio));
+			nuevoPro.setCodigoFabricante(Integer.parseInt(codigoFabricante));
 			proDAO.create(nuevoPro);			
 			
 		} else if (__method__ != null && "put".equalsIgnoreCase(__method__)) {			
@@ -159,16 +163,47 @@ public class ProductosServlet extends HttpServlet {
     	RequestDispatcher dispatcher;
 		ProductoDAO proDAO = new ProductoDAOImpl();
 		String codigo = request.getParameter("codigo");
+		String nombre = request.getParameter("nombre");
+		String precio = request.getParameter("precio");
+		String codFabricante = request.getParameter("codigo_fabricante");
+		Producto pro = new Producto();
 		
 		try {
 			
 			int id = Integer.parseInt(codigo);
+			double precioParse = Double.parseDouble(precio);
+			int idFab = Integer.parseInt(codFabricante);
 		
-		proDAO.delete(id);
+		pro.setCodigo(id);
+		pro.setNombre(nombre);
+		pro.setPrecio(precioParse);
+		pro.setCodigoFabricante(idFab);
+		proDAO.update(pro);
 			
 		} catch (NumberFormatException nfe) {
 			nfe.printStackTrace();
 		}
+    	
+    }
+    
+    @Override
+    protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    	
+    	RequestDispatcher dispatcher;
+    	ProductoDAO proDAO = new ProductoDAOImpl();
+    	String codigo = request.getParameter("codigo");
+    	
+    	try {
+    		
+    		int id = Integer.parseInt(codigo);
+    		
+    		proDAO.delete(id);
+    		
+    	} catch (NumberFormatException ex) {
+    		
+    		ex.printStackTrace();
+    		
+    	}
     	
     }
 

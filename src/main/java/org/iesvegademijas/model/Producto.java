@@ -16,6 +16,23 @@ public class Producto {
 	private Double precio;
 	private int codigoFabricante;
 	
+	// Constructor de la clase
+	public Producto(int codigo, String nombre, Double precio, int codigoFabricante) {
+		
+		this.codigo = codigo;
+		this.nombre = nombre;
+		this.precio = precio;
+		this.codigoFabricante = codigoFabricante;
+		
+	}
+	
+	// Segundo constructor
+	public Producto() {
+		
+		
+		
+	}
+	
 	// Getter y Setters
 	public int getCodigo() {
 		return codigo;

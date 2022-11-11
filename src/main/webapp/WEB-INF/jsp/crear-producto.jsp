@@ -48,6 +48,24 @@
 				<input name="nombre" />
 			</div> 
 		</div>
+		
+		<div style="margin-top: 6px;" class="clearfix">
+			<div style="float: left;width: 50%">
+				Precio
+			</div>
+			<div style="float: none;width: auto;overflow: hidden;">
+				<input name="precio" />
+			</div> 
+		</div>
+		
+		<div style="margin-top: 6px;" class="clearfix">
+			<div style="float: left;width: 50%">
+				Codigo Fabricante
+			</div>
+			<div style="float: none;width: auto;overflow: hidden;">
+				<input name="codigo_fabricante" />
+			</div> 
+		</div>
 
 	</form>
 	</div>
