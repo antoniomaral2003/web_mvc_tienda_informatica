@@ -197,5 +197,39 @@ public class FabricanteDAOImpl extends AbstractDAOImpl implements FabricanteDAO{
         }
 		
 	}
+	
+	@Override
+	public Optional<Integer> getCountProductos(int id){
+		
+		Connection conn = null;
+		PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        try {
+        	conn = connectDB();
+        	
+        	ps = conn.prepareStatement("SELECT COUNT(*) AS numProds FROM producto WHERE codigo_fabricante = ?");
+        	
+        	int idx =  1;
+        	ps.setInt(idx, id);
+        	
+        	rs = ps.executeQuery();
+        	
+        	if (rs.next()) {
+        		
+        		return Optional.of(rs.getInt("numProds"));
+        	}
+        	
+        } catch (SQLException e) {
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} finally {
+            closeDb(conn, ps, rs);
+        }
+        
+        return Optional.empty();
+		
+	}
 
 }
