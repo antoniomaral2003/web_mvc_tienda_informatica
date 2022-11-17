@@ -1,3 +1,4 @@
+
 package org.iesvegademijas.dao;
 
 import java.sql.Connection;
@@ -158,6 +159,7 @@ public class ProductoDAOImpl extends AbstractDAOImpl implements ProductoDAO {
         	ps.setString(idx, producto.getNombre());
         	ps.setDouble(2, producto.getPrecio());
         	ps.setInt(3, producto.getCodigoFabricante());
+        	ps.setInt(4, producto.getCodigo());
         	
         	int rows = ps.executeUpdate();
         	

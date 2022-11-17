@@ -16,7 +16,7 @@ import org.iesvegademijas.dao.FabricanteDAOImpl;
 import org.iesvegademijas.dto.FabricanteDTO;
 import org.iesvegademijas.model.Fabricante;
 
-
+import java.util.*;
 import static java.util.stream.Collectors.*;
 public class FabricantesServlet extends HttpServlet {
 
@@ -45,17 +45,58 @@ public class FabricantesServlet extends HttpServlet {
 			//	/fabricantes/
 			//	/fabricantes
 			
-			var listfabDTO = fabDAO.getAll().stream().map(f -> {
+			//var listfabDTO = fabDAO.getAll().stream().map(f -> {
 				
-				FabricanteDTO fab = new FabricanteDTO(f);
+			//	FabricanteDTO fab = new FabricanteDTO(f);
 				
-				fab.setNumProds(fabDAO.getCountProductos(f.getCodigo()).get());
+			//	fab.setNumProds(fabDAO.getCountProductos(f.getCodigo()).get());
 				
-				return fab;
+			//	return fab;
 				
-			}).collect(toList());
+			//}).collect(toList());
 			
-			request.setAttribute("listaFabricantes", listfabDTO);		
+			var listaFabDAO = fabDAO.getAllDTOPlusCountProductos();
+			
+			var listaOrdenada = listaFabDAO;
+			String ordenarPor = request.getParameter("ordenar-por");
+			String modoOrdenar = request.getParameter("modo-ordenar");
+			
+			if (ordenarPor != null && modoOrdenar == null) {
+				
+				if (ordenarPor.equals("nombre")) {
+					
+					listaOrdenada = listaOrdenada.stream()
+					.sorted((f1,f2) -> f1.getNombre().compareTo(f2.getNombre()))
+					.collect(toList());
+					
+				} else {
+					
+					listaOrdenada = listaOrdenada.stream()
+							.sorted((f1,f2) -> f1.getCodigo() - f2.getCodigo())
+							.collect(toList());
+					
+				}
+				
+				
+			} else if (ordenarPor != null && modoOrdenar != null) {
+				
+				if (ordenarPor.equals("nombre")) {
+					
+					listaOrdenada = listaOrdenada.stream()
+					.sorted((f1,f2) -> f2.getNombre().compareTo(f1.getNombre()))
+					.collect(toList());
+					
+				} else {
+					
+					listaOrdenada = listaOrdenada.stream()
+							.sorted((f1,f2) -> f2.getCodigo() - f1.getCodigo())
+							.collect(toList());
+					
+				}
+				
+			}
+			
+			request.setAttribute("listaFabricantes", listaOrdenada);		
 			dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/fabricantes.jsp");
 			        		       
 		} else {

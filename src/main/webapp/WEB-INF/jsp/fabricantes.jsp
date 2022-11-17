@@ -36,6 +36,27 @@
 				
 			</div>
 		</div>
+		
+		<form action="/tienda_informatica/fabricantes" method="get">
+		
+			<select name="ordenar-por">
+			
+				<option value="codigo">Codigo</option>
+				<option value="nombre">Nombre</option>
+			
+			</select>
+			
+			<select name="modo-ordenar">
+			
+				<option value="asc">Ascendente</option>
+				<option value="desc">Descendente</option>
+			
+			</select>
+			
+			<input type="submit" value="Ordenar">
+		
+		</form>
+		
 		<div class="clearfix">
 			<hr/>
 		</div>
