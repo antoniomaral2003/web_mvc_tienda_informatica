@@ -23,5 +23,8 @@ public interface ProductoDAO {
 	public void update(Producto producto);
 	
 	public void delete(int id);
+	
+	// Metodos implementados
+	public List<Producto> getAllNombre(String nombre);
 
 }

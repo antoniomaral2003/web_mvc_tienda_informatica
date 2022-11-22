@@ -16,6 +16,9 @@ import org.iesvegademijas.dao.ProductoDAOImpl;
 import org.iesvegademijas.model.Fabricante;
 import org.iesvegademijas.model.Producto;
 
+import java.util.*;
+import static java.util.stream.Collectors.*;
+
 /**
  * Servlet implementation class ProductosServlet
  */
@@ -51,7 +54,27 @@ public class ProductosServlet extends HttpServlet {
 			//	/productos/
 			//	/productos
 			
-			request.setAttribute("listaProductos", proDAO.getAll());		
+			var listaProdDAO = proDAO.getAll();
+			String nombre = request.getParameter("filtrar-por-nombre");
+			
+			if (nombre != null) {
+				
+				/** var listaFiltrada = listaProdDAO.stream()
+				.filter(p -> p.getNombre().contains(nombre))
+				.collect(toList());*/
+				 
+				request.setAttribute("listaProductos", proDAO.getAllNombre(nombre));
+				 //request.setAttribute("listaProductos", listaFiltrada);
+				
+				
+			} else {
+				
+				request.setAttribute("listaProductos", listaProdDAO);	
+				
+			}
+			
+			
+				
 			dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/productos.jsp");
 			        		       
 		} else {

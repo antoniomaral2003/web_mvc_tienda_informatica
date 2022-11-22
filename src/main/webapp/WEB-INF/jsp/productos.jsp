@@ -37,6 +37,14 @@
 				
 			</div>
 		</div>
+		
+		<form action="/tienda_informatica/productos">
+						
+			<input type="text" name="filtrar-por-nombre" placeholder="Buscar">
+			<input type="submit" value="Buscar">
+						
+		</form>
+		
 		<div class="clearfix">
 			<hr/>
 		</div>
