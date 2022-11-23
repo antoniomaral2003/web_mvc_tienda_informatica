@@ -1,0 +1,19 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Tienda Informática</title>
+</head>
+<body>
+
+	<!-- Body section -->
+	<main class = "body_sec">
+		<section id="Content">
+			<h3>Content section</h3>
+		</section>
+	</main>
+
+</body>
+</html>

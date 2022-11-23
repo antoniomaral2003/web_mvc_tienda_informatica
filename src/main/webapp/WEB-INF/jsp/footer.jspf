@@ -1,0 +1,31 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Tienda Informática</title>
+<style type="text/css">
+
+	footer {
+			width: 100%;
+			bottom: 0px;
+			background-color: #000;
+			color: #fff;
+			position: absolute;
+			padding-top:20px;
+			padding-bottom:50px;
+			text-align:center;
+			font-size:30px;
+			font-weight:bold;
+		}
+
+</style>
+</head>
+<body>
+
+	<!-- Footer Section -->
+	<footer>Tienda Informática Copyright 2022</footer>
+
+</body>
+</html>
