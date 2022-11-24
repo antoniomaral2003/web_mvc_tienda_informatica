@@ -1,20 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@page import="org.iesvegademijas.model.Producto"%>
-<%@page import="org.iesvegademijas.model.Fabricante"%>
+    pageEncoding="UTF-8"%>
+    <%@page import="org.iesvegademijas.model.Usuario"%>
 <%@page import="java.util.*"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Crear Producto</title>
-<style>
-.clearfix::after {
-	content: "";
-	display: block;
-	clear: both;
-}
-</style>
+<title>Crear Usuario</title>
 </head>
 <body>
 
@@ -23,15 +15,15 @@
 	<%@ include file="/WEB-INF/jsp/nav.jspf" %>
 
 	<main>
-
+	
 		<section>
-
+		
 			<div id="contenedora"
 				style="float: none; margin: 0 auto; width: 900px;">
-				<form action="/tienda_informatica/productos/crear/" method="post">
+				<form action="/tienda_informatica/usuarios/crear/" method="post">
 					<div class="clearfix">
 						<div style="float: left; width: 50%">
-							<h1>Crear Producto</h1>
+							<h1>Crear Usuario</h1>
 						</div>
 						<div
 							style="float: none; width: auto; overflow: hidden; min-height: 80px; position: relative;">
@@ -55,27 +47,27 @@
 					</div>
 
 					<div style="margin-top: 6px;" class="clearfix">
-						<div style="float: left; width: 50%">Precio</div>
+						<div style="float: left; width: 50%">Contraseña</div>
 						<div style="float: none; width: auto; overflow: hidden;">
-							<input name="precio" />
+							<input name="contrasenia" />
 						</div>
 					</div>
 
 					<div style="margin-top: 6px;" class="clearfix">
-						<div style="float: left; width: 50%">Codigo Fabricante</div>
+						<div style="float: left; width: 50%">Rol</div>
 						<div style="float: none; width: auto; overflow: hidden;">
-							<select name="codigo_fabricante">
+							<select name="rol">
 
 
 
 								<%
-								if (request.getAttribute("listaFabricantes") != null) {
-									List<Fabricante> listaFabricantes = (List<Fabricante>) request.getAttribute("listaFabricantes");
+								if (request.getAttribute("listaUsuarios") != null) {
+									List<Usuario> listaUsuarios = (List<Usuario>) request.getAttribute("listaUsuarios");
 
-									for (Fabricante fabricante : listaFabricantes) {
+									for (Usuario usuario : listaUsuarios) {
 								%>
 
-								<option value="<%=fabricante.getCodigo()%>"><%=fabricante.getNombre()%></option>
+								<option value="<%=usuario.getId()%>"><%=usuario.getNombre()%></option>
 
 								<%
 								}
@@ -89,9 +81,9 @@
 
 				</form>
 			</div>
-
+		
 		</section>
-
+	
 	</main>
 	
 	<%@ include file="/WEB-INF/jsp/footer.jspf" %>

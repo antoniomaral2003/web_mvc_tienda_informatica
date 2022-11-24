@@ -69,7 +69,7 @@ public class ProductoDAOImpl extends AbstractDAOImpl implements ProductoDAO {
 		Statement s = null;
         ResultSet rs = null;
         
-        List<Producto> listFab = new ArrayList<>(); 
+        List<Producto> listPro = new ArrayList<>(); 
         
         try {
         	conn = connectDB();
@@ -84,7 +84,7 @@ public class ProductoDAOImpl extends AbstractDAOImpl implements ProductoDAO {
             	pro.setCodigo(rs.getInt("codigo"));
             	pro.setNombre(rs.getString("nombre"));
             	pro.setPrecio(rs.getDouble("precio"));
-            	listFab.add(pro);
+            	listPro.add(pro);
             }
           
 		} catch (SQLException e) {
@@ -94,7 +94,7 @@ public class ProductoDAOImpl extends AbstractDAOImpl implements ProductoDAO {
 		} finally {
             closeDb(conn, s, rs);
         }
-        return listFab;
+        return listPro;
         
 	}
 
